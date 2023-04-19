@@ -7,7 +7,7 @@ use Azuriom\Plugin\RankFaction\Models\Faction;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Client\Request;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {

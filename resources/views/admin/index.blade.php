@@ -7,10 +7,11 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <form action="{{route('rank-faction.admin.testpost')}}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <label>Nom de faction</label>
-                <input name="name" value=""/>
+                <input type="text" name="name" value=""/>
                 <label>Nombre de points</label>
-                <input name="points" value=""/>
+                <input type="number" name="points" value=""/>
                 <button type="submit" class="btn btn-primary">Ajouter</button>
             </form>
         </div>
