@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [AdminController::class, 'index'])->name('settings');
-Route::post('/add', [AdminController::class, 'store'])->name('testpost');
+Route::post('/', [AdminController::class, 'store'])->name('store');
+Route::delete('/', [AdminController::class, 'destroy'])->name('destroy');
 
 Route::resource('faction', AdminController::class);

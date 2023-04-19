@@ -6,7 +6,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <form action="{{route('rank-faction.admin.testpost')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('rank-faction.admin.store')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <label>Nom de faction</label>
                 <input type="text" name="name" value=""/>
@@ -30,6 +30,13 @@
                     <td>{{$loop->index +1}}</td>
                     <td>{{ $faction->name }}</td>
                     <td>{{ $faction->points }}</td>
+{{--                    <td>{{ $faction->id }}</td>--}}
+{{--                    <td><button class="btn btn-secondary">Modifier</button></td>--}}
+                    <td><form action="{{route('rank-faction.admin.destroy', ['id'=> $faction->id ])}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger">Supprimer</button>
+                        </form></td>
                 </tr>
             @endforeach
             </tbody>

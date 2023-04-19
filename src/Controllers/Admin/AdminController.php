@@ -31,6 +31,14 @@ class AdminController extends Controller
         $faction->name = $request->name;
         $faction->points = $request->points;
         $faction->save();
-        return redirect()->route('rank-faction.admin.settings')->with('status', 'Faction ajouté');;
+        return redirect()->route('rank-faction.admin.settings')->with('status', 'Faction ajouté');
+    }
+
+    public function destroy(Request $request)
+    {
+        $id = $request->input('id');
+        $faction = Faction::find($id);
+        $faction->delete();
+        return redirect()->route('rank-faction.admin.settings')->with('status', 'Faction ajouté');
     }
 }
