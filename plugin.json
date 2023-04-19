@@ -1,0 +1,15 @@
+{
+    "id": "rank-faction",
+    "name": "rank-faction",
+    "description": "Plugin for Azuriom",
+    "version": "1.0.0",
+    "url": "https://azuriom.com",
+    "authors": [
+        "Azuriom"
+    ],
+    "azuriom_api": "1.0.0",
+    "providers": [
+        "\\Azuriom\\Plugin\\RankFaction\\Providers\\RankFactionServiceProvider",
+        "\\Azuriom\\Plugin\\RankFaction\\Providers\\RouteServiceProvider"
+    ]
+}
