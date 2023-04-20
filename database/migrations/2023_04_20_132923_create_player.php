@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('faction', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->integer('totem')->default(0);
-            $table->integer('koth')->default(0);
+        Schema::create('player', function (Blueprint $table) {
+            $table->id();
         });
     }
 
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faction');
+        Schema::dropIfExists('player');
     }
 };

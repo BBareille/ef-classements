@@ -8,12 +8,14 @@ use Illuminate\Support\Facades\DB;
 /**
  * @property int $id
  * @property string $name
- * @property int $points
+ * @property int $totem
+ * @property int $koth
+ * @property \Illuminate\Support\Collection|Azuriom\Plugin\RankFaction\Models\Player[] $players
  *
  * @method static \Illuminate\Database\Eloquent\Builder enabled()
  */
 
-class Faction extends Model
+class Faction extends Rankable
 {
 
     /**
@@ -30,40 +32,10 @@ class Faction extends Model
      */
     protected $table = 'faction';
 
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
 
-    /**
-     * @param string $name
-     */
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-        return $this;
+    public function players(): HasMany{
+        return $this->hasMany(Player::class);
     }
-
-    /**
-     * @param int $points
-     */
-    public function setPoints(int $points): self
-    {
-        $this->points = $points;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getPoints(): int
-    {
-        return $this->points;
-    }
-
     public static function getRankBy(): Collection
     {
             return DB::table('faction')

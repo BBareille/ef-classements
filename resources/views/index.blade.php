@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.4/dist/bootstrap-table.min.css">
 
+    <div  class="col-sm-2 mb-2">
+        <input type="text" id="customSearch" placeholder="Rechercher une faction .." class="form-control">
+    </div>
+
 
     @if($factionList)
         <table id="table"
@@ -18,6 +22,7 @@
                data-pagination-next-text="Suivant"
                data-pagination-detail="false"
                data-pagination-parts="pageList"
+               data-search-selector="#customSearch"
         >
             <thead>
             <th data-field="position" data-sortable="true" data-width="20">Pos</th>
@@ -41,6 +46,9 @@
                     @endforeach
                 </tr>
             @endforeach
+            <tr class="no-data">
+                <td colspan="3" >in table</td>
+            </tr>
             </tbody>
         </table>
 
