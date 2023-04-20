@@ -4,20 +4,32 @@
 
 @section('content')
 
-    <table>
-        <thead>
+    @if($factionList)
+        <table class="table table-bordered">
+            <thead>
             <th>Pos</th>
             <th>Nom de faction</th>
             <th>Nombres de points</th>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
             @foreach($factionList as $faction)
                 <tr>
                     <td>{{$loop->index +1}}</td>
-                    <td>{{ $faction->name }}</td>
-                    <td>{{ $faction->points }}</td>
+                    @foreach(array_keys(get_object_vars($faction)) as $param)
+                        @if($param != 'id')
+                            @if($param != 'created_at')
+                                @if($param != 'updated_at')
+                                    <td>{{ $faction->$param }}</td>
+                                @endif
+                            @endif
+                        @endif
+
+
+                    @endforeach
                 </tr>
             @endforeach
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+
+    @endif
 @endsection
