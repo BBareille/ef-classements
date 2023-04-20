@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 /**
  * @property int $id
  * @property string $name
- * @property Calculation $rankCalculation
+ * @property Calculation $rankCalculation_id
  * @property \Illuminate\Support\Collection|Azuriom\Plugin\RankFaction\Models\Rankable $targetEntities
  *
  * @method static \Illuminate\Database\Eloquent\Builder enabled()
