@@ -18,7 +18,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $factionList = Faction::all();
+        $factionList = Faction::getRankBy();
 
         return view('rank-faction::admin.index', [
             "factionList" => $factionList

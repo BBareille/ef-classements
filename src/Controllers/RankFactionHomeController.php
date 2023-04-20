@@ -17,10 +17,7 @@ class RankFactionHomeController extends Controller
      */
     public function index()
     {
-        $faction = new Faction([], 'S2F', 1500);
-        $faction2 = new Faction([], 'Faction_2', 1200);
-
-        $factionList = [$faction, $faction2];
+        $factionList = Faction::getRankBy();
         return view('rank-faction::index', [
             'factionList' => $factionList
         ]);
