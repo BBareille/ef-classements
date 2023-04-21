@@ -1,6 +1,6 @@
 <?php
 
-namespace Azuriom\Plugin\RankFaction\Models;
+namespace Azuriom\Models;
 use Illuminate\Database\Eloquent\Model;
 abstract class Rankable extends Model
 {

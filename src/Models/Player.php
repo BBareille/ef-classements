@@ -1,10 +1,11 @@
 <?php
 
-namespace Azuriom\Plugin\RankFaction\Models;
+namespace Azuriom\Models;
+
 use Azuriom\Models\User;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @property int $id
@@ -13,11 +14,17 @@ use Illuminate\Support\Facades\DB;
  * @property int $kills
  * @property int $deaths
  *
- * @method static \Illuminate\Database\Eloquent\Builder enabled()
+ * @method static Builder enabled()
  */
 class Player extends Rankable
 {
-    public function user(): HasOne{
+
+
+    public $timestamps = false;
+
+    protected $table = 'player'; // next migration this need to go
+    public function user(): HasOne
+    {
         return $this->hasOne(User::class);
     }
 

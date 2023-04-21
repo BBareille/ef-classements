@@ -1,7 +1,8 @@
 <?php
 
-namespace Azuriom\Plugin\RankFaction\Models;
-use Illuminate\Database\Eloquent\Model;
+namespace Azuriom\Models;
+
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\DB;
  * @property string $name
  * @property int $totem
  * @property int $koth
- * @property \Illuminate\Support\Collection|Azuriom\Plugin\RankFaction\Models\Player[] $players
+ * @property Collection|Player[] $players
  *
  * @method static \Illuminate\Database\Eloquent\Builder enabled()
  */
@@ -31,6 +32,8 @@ class Faction extends Rankable
      * @var string
      */
     protected $table = 'faction';
+
+    public $timestamps = false;
 
 
     public function players(): HasMany{
