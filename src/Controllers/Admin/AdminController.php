@@ -3,14 +3,16 @@
 namespace Azuriom\Plugin\RankFaction\Controllers\Admin;
 
 use Azuriom\Http\Controllers\Controller;
-use Azuriom\Models\Faction;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Azuriom\Models\Faction;
 
 class AdminController extends Controller
 {
+
+
     /**
      * Show the home admin page of the plugin.
      *
@@ -19,6 +21,9 @@ class AdminController extends Controller
     public function index()
     {
         $factionList = Faction::getRankBy();
+        $faction = Faction::find(2);
+        dd($faction->players());
+
 
         return view('rank-faction::admin.index', [
             "factionList" => $factionList

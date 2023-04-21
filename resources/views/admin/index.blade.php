@@ -3,26 +3,14 @@
 @section('title', 'Paramètres du classement des factions')
 
 @section('content')
-
-    <div class="card shadow mb-4">
-        <div class="card-body">
-            <form action="{{route('rank-faction.admin.store')}}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <label>Nom de faction</label>
-                <input type="text" name="name" value=""/>
-                <label>Nombre de points</label>
-                <input type="number" name="points" value=""/>
-                <button type="submit" class="btn btn-primary">Ajouter</button>
-            </form>
-        </div>
-    </div>
-
     @if($factionList)
         <table class="table table-bordered">
             <thead>
                 <th>Pos</th>
-                <th>Nom de faction</th>
-                <th>Nombres de points</th>
+                <th>name</th>
+                <th>Id du classement</th>
+                <th>totem</th>
+                <th>koth</th>
             </thead>
             <tbody>
             @foreach($factionList as $faction)
@@ -39,6 +27,7 @@
 
 
                     @endforeach
+{{--                    <td>{{dd($faction)}}</td>--}}
                     <td><form action="{{route('rank-faction.admin.destroy', ['id'=> $faction->id ])}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('DELETE')

@@ -17,7 +17,7 @@
                data-toggle="table"
                data-search="true"
                data-pagination="true"
-               data-page-size="4"
+               data-page-size="10"
                data-pagination-pre-text="Précédent"
                data-pagination-next-text="Suivant"
                data-pagination-detail="false"
@@ -26,8 +26,10 @@
         >
             <thead>
             <th data-field="position" data-sortable="true" data-width="20">Pos</th>
-            <th>Nom de faction</th>
-            <th>Nombres de points</th>
+            <th>name</th>
+            <th>Id du classement</th>
+            <th>totem</th>
+            <th>koth</th>
             </thead>
             <tbody>
             @foreach($factionList as $faction)
@@ -47,7 +49,7 @@
                 </tr>
             @endforeach
             <tr class="no-data">
-                <td colspan="3" >in table</td>
+                <td colspan="3">in table</td>
             </tr>
             </tbody>
         </table>

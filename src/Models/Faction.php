@@ -51,7 +51,7 @@ class Faction extends Rankable implements IRankable
     public static function getRankBy(): Collection
     {
             return DB::table('faction')
-                ->orderBy('points', 'desc')
+                ->orderBy('koth', 'desc')
                 ->get();
     }
 
