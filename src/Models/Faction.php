@@ -2,7 +2,9 @@
 
 namespace Azuriom\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
@@ -13,10 +15,10 @@ use Illuminate\Support\Facades\DB;
  * @property int $koth
  * @property Collection|Player[] $players
  *
- * @method static \Illuminate\Database\Eloquent\Builder enabled()
+ * @method static Builder enabled()
  */
 
-class Faction extends Rankable
+class Faction extends Rankable implements IRankable
 {
 
     /**
@@ -27,6 +29,14 @@ class Faction extends Rankable
     protected $primaryKey = 'id';
 
     /**
+     * Get all of the tags for the post.
+     */
+    public function tags(): MorphToMany
+    {
+        return $this->morphToMany(Ranking::class, 'taggable');
+    }
+
+    /**
      * The table associated with the model.
      *
      * @var string
@@ -34,7 +44,6 @@ class Faction extends Rankable
     protected $table = 'faction';
 
     public $timestamps = false;
-
 
     public function players(): HasMany{
         return $this->hasMany(Player::class);
@@ -46,4 +55,13 @@ class Faction extends Rankable
                 ->get();
     }
 
+    function getId()
+    {
+        return $this->id;
+    }
+
+    function getClass()
+    {
+        return get_class($this);
+    }
 }

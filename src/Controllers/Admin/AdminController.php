@@ -3,7 +3,7 @@
 namespace Azuriom\Plugin\RankFaction\Controllers\Admin;
 
 use Azuriom\Http\Controllers\Controller;
-use Azuriom\Plugin\RankFaction\Models\Faction;
+use Azuriom\Models\Faction;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;

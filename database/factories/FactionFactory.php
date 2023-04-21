@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Azuriom\Models\Ranking;
 use Azuriom\Plugin\RankFaction\Models\Faction;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -21,6 +22,7 @@ class FactionFactory extends Factory
             'name' => $this->faker->name(),
             'totem' => $this->faker->numberBetween(0,100),
             'koth' => $this->faker->numberBetween(0,100),
+            'ranking_id' => RankingFactory::new()
         ];
     }
 }

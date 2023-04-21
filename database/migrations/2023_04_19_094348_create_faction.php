@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('faction', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->integer('ranking_id');
             $table->integer('totem')->default(0);
             $table->integer('koth')->default(0);
         });

@@ -2,7 +2,16 @@
 
 namespace Azuriom\Models;
 use Illuminate\Database\Eloquent\Model;
-abstract class Rankable extends Model
+use Illuminate\Support\Collection;
+
+/**
+ * @property int $id
+ * @property string $type
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder enabled()
+ */
+
+class Rankable extends Model
 {
 
 }

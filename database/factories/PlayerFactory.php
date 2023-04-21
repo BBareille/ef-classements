@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use Azuriom\Plugin\RankFaction\Models\Player;
+use Azuriom\Models\Player;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

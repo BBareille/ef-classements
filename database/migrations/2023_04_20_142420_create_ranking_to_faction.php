@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ranking_to_faction', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedInteger('faction_id');
-            $table->unsignedInteger('ranking_id');
-
-            $table->foreign('faction_id')->references('id')->on('faction');
-            $table->foreign('ranking_id')->references('id')->on('ranking');
-
-        });
+//        Schema::create('ranking_to_faction', function (Blueprint $table) {
+//            $table->id();
+//            $table->unsignedInteger('faction_id');
+//            $table->unsignedInteger('ranking_id');
+//
+//            $table->foreign('faction_id')->references('id')->on('faction');
+//            $table->foreign('ranking_id')->references('id')->on('rankings');
+//
+//        });
     }
 
     /**
