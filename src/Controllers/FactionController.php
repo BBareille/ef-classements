@@ -4,7 +4,6 @@ namespace Azuriom\Plugin\RankFaction\Controllers;
 
 use Azuriom\Http\Controllers\Controller;
 use Azuriom\Models\Faction;
-use Azuriom\Models\Rankable;
 
 class FactionController extends Controller
 {

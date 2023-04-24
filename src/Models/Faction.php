@@ -22,7 +22,6 @@ use Illuminate\Support\Facades\DB;
 
 class Faction extends Model
 {
-
     /**
      * The primary key associated with the table.
      *

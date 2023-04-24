@@ -1,6 +1,7 @@
 <?php
 
-use Azuriom\Plugin\RankFaction\Controllers\Api\ApiController;
+use Azuriom\Plugin\RankFaction\Controllers\Api\PlayerApiController;
+use Azuriom\Plugin\RankFaction\Controllers\Api\FactionApiController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ApiController::class, 'index']);
+Route::get("/faction", [FactionApiController::class, 'index']);
+Route::post("/faction", [FactionApiController::class, 'store']);
+Route::get("/faction/{id}", [FactionApiController::class, 'show']);
+Route::put("/faction/{id}", [FactionApiController::class, 'update']);
+Route::delete("/faction/{id}", [FactionApiController::class, 'destroy']);
+
+Route::get("/player", [PlayerApiController::class, 'index']);
+Route::post("/player", [PlayerApiController::class, 'store']);
+Route::get("/player/{id}", [PlayerApiController::class, 'show']);
+Route::put("/player/{id}", [PlayerApiController::class, 'update']);

@@ -44,7 +44,7 @@ class AdminController extends Controller
         $ranking->save();
         $entity = $request->target;
         match($entity){
-            "Faction" => $this->attachRankingToEntity(Faction::all(), $ranking),
+            "FactionCollection" => $this->attachRankingToEntity(Faction::all(), $ranking),
             "Player" => $this->attachRankingToEntity(Player::all(), $ranking),
 //            "Island" => $ranking->targetEntities()->saveMany(Island::all())
         };
@@ -65,6 +65,6 @@ class AdminController extends Controller
         $ranking = Ranking::find($id);
         $ranking->targetEntities()->detach();
         $ranking->delete();
-        return redirect()->route('rank-faction.admin.settings')->with('status', 'Faction supprimer');
+        return redirect()->route('rank-faction.admin.settings')->with('status', 'FactionCollection supprimer');
     }
 }

@@ -41,7 +41,7 @@
     targetEntity.addEventListener("change", ()=> {
         if(targetEntity.value == "Player"){
             selectCalculation.innerHTML = "<option value='kills'>Kill</option><option value='deaths'>Deaths</option>"
-        } else if(targetEntity.value == "Faction"){
+        } else if(targetEntity.value == "FactionCollection"){
             selectCalculation.innerHTML = "<option value='koth'>Koth</option><option value='totem'>Totem</option><option value='players'>Players</option>"
         }
     })
