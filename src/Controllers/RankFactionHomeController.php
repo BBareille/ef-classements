@@ -4,6 +4,7 @@ namespace Azuriom\Plugin\RankFaction\Controllers;
 
 use Azuriom\Http\Controllers\Controller;
 use Azuriom\Models\Faction;
+use Azuriom\Models\Ranking;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -18,8 +19,10 @@ class RankFactionHomeController extends Controller
     public function index()
     {
         $factionList = Faction::getRankBy();
+        $rankingList = Ranking::all();
         return view('rank-faction::index', [
-            'factionList' => $factionList
+            'factionList' => $factionList,
+            'rankingList' => $rankingList
         ]);
     }
 }

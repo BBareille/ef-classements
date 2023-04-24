@@ -18,7 +18,9 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name');
             $table->unsignedInteger('calculation_id');
-            $table->foreign('calculation_id')->references('id')->on('calculations');
+            $table->foreign('calculation_id')
+                ->references('id')->on('calculations')
+                ->onDelete('cascade');
         });
     }
 

@@ -3,6 +3,8 @@
 namespace Azuriom\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Collection;
@@ -18,7 +20,7 @@ use Illuminate\Support\Facades\DB;
  * @method static Builder enabled()
  */
 
-class Faction extends Rankable implements IRankable
+class Faction extends Model
 {
 
     /**
@@ -31,9 +33,9 @@ class Faction extends Rankable implements IRankable
     /**
      * Get all of the tags for the post.
      */
-    public function tags(): MorphToMany
+    public function ranking(): MorphToMany
     {
-        return $this->morphToMany(Ranking::class, 'taggable');
+        return $this->morphToMany(Ranking::class, 'rankable');
     }
 
     /**

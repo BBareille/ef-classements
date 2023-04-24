@@ -18,5 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AdminController::class, 'index'])->name('settings');
 Route::post('/', [AdminController::class, 'store'])->name('store');
 Route::delete('/', [AdminController::class, 'destroy'])->name('destroy');
+Route::get('/newRanking', [AdminController::class, 'rankingForm'])->name('rankingForm');
+Route::post('/newRanking', [AdminController::class, 'storeRanking'])->name('storeRanking');
+Route::delete('/ranking', [AdminController::class, 'destroyRanking'])->name('destroyRanking');
 
 Route::resource('faction', AdminController::class);

@@ -8,9 +8,10 @@ use Azuriom\Models\Rankable;
 
 class FactionController extends Controller
 {
-    public function store(Faction $faction){
-        $faction->save();
-        $rankable = new Rankable();
-        $rankable->add($faction);
+    public static function getPlayerListFromFaction(int $id){
+
+        $faction = Faction::find($id);
+
+        return count($faction->players);
     }
 }

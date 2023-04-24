@@ -3,40 +3,24 @@
 @section('title', 'Paramètres du classement des factions')
 
 @section('content')
-    @if($factionList)
-        <table class="table table-bordered">
-            <thead>
-                <th>Pos</th>
-                <th>name</th>
-                <th>Id du classement</th>
-                <th>totem</th>
-                <th>koth</th>
-            </thead>
-            <tbody>
-            @foreach($factionList as $faction)
-                <tr>
-                    <td>{{$loop->index +1}}</td>
-                    @foreach(array_keys(get_object_vars($faction)) as $param)
-                        @if($param != 'id')
-                            @if($param != 'created_at')
-                                @if($param != 'updated_at')
-                                    <td>{{ $faction->$param }}</td>
-                            @endif
-                            @endif
-                        @endif
+    <div>Liste des classements</div>
+    <a href="rank-faction/newRanking" class="btn btn-primary">Ajouter un nouveau classement</a>
+    <table>
+        @foreach($rankingList as $ranking)
+            <tr>
+                <td>{{$ranking->name}}</td>
+                <td><button class="btn btn-secondary">Modifier</button></td>
+                <td>
+                    <form method="POST" action="{{action('Azuriom\Plugin\RankFaction\Controllers\Admin\AdminController@destroyRanking')}}">
+                        @csrf
+                        @method("DELETE")
+                        <input type="hidden" name="id" value="{{$ranking->id}}"/>
+                        <button type="submit" class="btn btn-danger">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </table>
 
 
-                    @endforeach
-{{--                    <td>{{dd($faction)}}</td>--}}
-                    <td><form action="{{route('rank-faction.admin.destroy', ['id'=> $faction->id ])}}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger">Supprimer</button>
-                        </form></td>
-                </tr>
-            @endforeach
-            </tbody>
-        </table>
-
-    @endif
 @endsection

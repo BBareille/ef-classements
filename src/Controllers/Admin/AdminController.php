@@ -3,11 +3,15 @@
 namespace Azuriom\Plugin\RankFaction\Controllers\Admin;
 
 use Azuriom\Http\Controllers\Controller;
+use Azuriom\Models\Calculation;
+use Azuriom\Models\Faction;
+use Azuriom\Models\Player;
+use Azuriom\Models\Rankable;
+use Azuriom\Models\Ranking;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Azuriom\Models\Faction;
 
 class AdminController extends Controller
 {
@@ -20,30 +24,47 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $factionList = Faction::getRankBy();
-        $faction = Faction::find(2);
-        dd($faction->players());
-
+        $rankingList = Ranking::all();
 
         return view('rank-faction::admin.index', [
-            "factionList" => $factionList
+            "rankingList" => $rankingList
         ]);
     }
 
-    public function store(Request $request)
-    {
-        $faction = new Faction();
-        $faction->name = $request->name;
-        $faction->points = $request->points;
-        $faction->save();
-        return redirect()->route('rank-faction.admin.settings')->with('status', 'Faction ajouté');
+    public function rankingForm(Request $request){
+
+        return \view('rank-faction::admin.ranking');
     }
 
-    public function destroy(Request $request)
+    public function storeRanking(Request $request){
+        $ranking = new Ranking();
+        $ranking->name = $request->name;
+        $calculation = Calculation::where('name', $request->calculation)->first();
+        $ranking->calculation_id = $calculation->id;
+        $ranking->save();
+        $entity = $request->target;
+        match($entity){
+            "Faction" => $this->attachRankingToEntity(Faction::all(), $ranking),
+            "Player" => $this->attachRankingToEntity(Player::all(), $ranking),
+//            "Island" => $ranking->targetEntities()->saveMany(Island::all())
+        };
+
+        $ranking->refresh();
+        return redirect()->route('rank-faction.admin.settings')->with('status', 'Classement ajouté');
+    }
+
+    private function attachRankingToEntity($entities, $ranking){
+        foreach ($entities as $entity){
+            $entity->ranking()->save($ranking);
+        }
+    }
+
+    public function destroyRanking(Request $request)
     {
         $id = $request->input('id');
-        $faction = Faction::find($id);
-        $faction->delete();
-        return redirect()->route('rank-faction.admin.settings')->with('status', 'Faction ajouté');
+        $ranking = Ranking::find($id);
+        $ranking->targetEntities()->detach();
+        $ranking->delete();
+        return redirect()->route('rank-faction.admin.settings')->with('status', 'Faction supprimer');
     }
 }

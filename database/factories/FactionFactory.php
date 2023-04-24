@@ -21,8 +21,7 @@ class FactionFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'totem' => $this->faker->numberBetween(0,100),
-            'koth' => $this->faker->numberBetween(0,100),
-            'ranking_id' => RankingFactory::new()
+            'koth' => $this->faker->numberBetween(0,100)
         ];
     }
 }

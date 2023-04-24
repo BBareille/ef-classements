@@ -3,6 +3,7 @@
 namespace Azuriom\Plugin\RankFaction\Providers;
 
 use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class RankFactionServiceProvider extends BasePluginServiceProvider
 {
@@ -73,7 +74,10 @@ class RankFactionServiceProvider extends BasePluginServiceProvider
 
         $this->registerUserNavigation();
 
-        //
+        Relation::enforceMorphMap([
+            'player' => 'Azuriom\Models\Player',
+            'faction' => 'Azuriom\Models\Faction',
+        ]);
     }
 
     /**
@@ -100,8 +104,8 @@ class RankFactionServiceProvider extends BasePluginServiceProvider
                 'name' => 'RankFaction',
                 'type' => 'dropdown',
                 'icon' => '',
-                'route' => 'rank-faction.admin.*',
-                'permission' => 'rank-faction.admin',
+                'route' => 'rank-faction-faction.admin.*',
+                'permission' => 'rank-faction-faction.admin',
                 'items' => [
                     'rank-faction.admin.settings' => trans('Settings'),
                 ],
@@ -120,4 +124,6 @@ class RankFactionServiceProvider extends BasePluginServiceProvider
             //
         ];
     }
+
+
 }
