@@ -18,10 +18,8 @@ class RankFactionHomeController extends Controller
      */
     public function index()
     {
-        $factionList = Faction::getRankBy();
         $rankingList = Ranking::all();
         return view('rank-faction::index', [
-            'factionList' => $factionList,
             'rankingList' => $rankingList
         ]);
     }

@@ -3,16 +3,10 @@
 namespace Azuriom\Plugin\RankFaction\Controllers;
 
 use Azuriom\Http\Controllers\Controller;
-use Azuriom\Models\Calculation;
 
 class RankingController extends Controller
 {
     public static function getListOfTargetEntities(){
-        return ['FactionCollection', 'Player', 'Island'];
-    }
-
-    public static function getListOfCalculation(){
-
-        return Calculation::all();
+        return ['Faction', 'Player', 'Island'];
     }
 }
