@@ -1,6 +1,6 @@
 <?php
 
-use Azuriom\Plugin\RankFaction\Controllers\RankFactionHomeController;
+use Azuriom\Plugin\EfClassements\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [RankFactionHomeController::class, 'index'])->name('index');
+Route::get('/', [HomeController::class, 'index'])->name('index');

@@ -13,7 +13,7 @@ class FactionResource extends JsonResource
             "name" => $this->name,
             "totem" => $this->totem,
             "koth" => $this->koth,
-            "players" => \Azuriom\Http\Resources\PlayerResource::collection($this->players)
+            "players" => PlayerResource::collection($this->players)
         ];
     }
 }

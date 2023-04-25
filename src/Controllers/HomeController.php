@@ -3,13 +3,12 @@
 namespace Azuriom\Plugin\EfClassements\Controllers;
 
 use Azuriom\Http\Controllers\Controller;
-use Azuriom\Models\Faction;
-use Azuriom\Models\Ranking;
+use Azuriom\Plugin\EfClassements\Models\Ranking;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 
-class RankFactionHomeController extends Controller
+class HomeController extends Controller
 {
     /**
      * Show the home plugin page.

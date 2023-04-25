@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rankable', function (Blueprint $table) {
+        Schema::create('rankables', function (Blueprint $table) {
             $table->unsignedInteger('ranking_id');
             $table->unsignedInteger('rankable_id');
             $table->string('rankable_type');

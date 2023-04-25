@@ -4,14 +4,14 @@
 
 @section('content')
     <div>Liste des classements</div>
-    <a href="rank-faction/newRanking" class="btn btn-primary">Ajouter un nouveau classement</a>
+    <a href="ef-classements/newRanking" class="btn btn-primary">Ajouter un nouveau classement</a>
     <table>
         @foreach($rankingList as $ranking)
             <tr>
                 <td>{{$ranking->name}}</td>
                 <td><button class="btn btn-secondary">Modifier</button></td>
                 <td>
-                    <form method="POST" action="{{action('Azuriom\Plugin\RankFaction\Controllers\Admin\AdminController@destroyRanking')}}">
+                    <form method="POST" action="{{action('Azuriom\Plugin\EfClassements\Controllers\Admin\AdminController@destroyRanking')}}">
                         @csrf
                         @method("DELETE")
                         <input type="hidden" name="id" value="{{$ranking->id}}"/>

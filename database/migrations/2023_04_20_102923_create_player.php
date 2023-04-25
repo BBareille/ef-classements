@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('players', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('faction_id');
+            $table->unsignedInteger('faction_id')->nullable(true);
             $table->unsignedInteger('kills');
             $table->unsignedInteger('deaths');
 

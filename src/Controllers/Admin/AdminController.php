@@ -3,13 +3,14 @@
 namespace Azuriom\Plugin\EfClassements\Controllers\Admin;
 
 use Azuriom\Http\Controllers\Controller;
-use Azuriom\Models\Calculation;
-use Azuriom\Models\Faction;
-use Azuriom\Models\Player;
-use Azuriom\Models\Ranking;
+use Azuriom\Plugin\EfClassements\Models\Calculation;
+use Azuriom\Plugin\EfClassements\Models\Faction;
+use Azuriom\Plugin\EfClassements\Models\Player;
+use Azuriom\Plugin\EfClassements\Models\Ranking;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -43,7 +44,7 @@ class AdminController extends Controller
         $ranking->save();
         $entity = $request->target;
         match($entity){
-            "FactionCollection" => $this->attachRankingToEntity(Faction::all(), $ranking),
+            "Faction" => $this->attachRankingToEntity(Faction::all(), $ranking),
             "Player" => $this->attachRankingToEntity(Player::all(), $ranking),
 //            "Island" => $ranking->targetEntities()->saveMany(Island::all())
         };
@@ -62,7 +63,11 @@ class AdminController extends Controller
     {
         $id = $request->input('id');
         $ranking = Ranking::find($id);
-        $ranking->targetEntities()->detach();
+        if(count($ranking->players) > 0){
+            $ranking->players->detach();
+        } elseif (count($ranking->faction) > 0){
+            $ranking->faction->detach();
+        }
         $ranking->delete();
         return redirect()->route('ef-classements.admin.settings')->with('status', 'FactionCollection supprimer');
     }

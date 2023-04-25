@@ -2,7 +2,7 @@
 
 namespace Azuriom\Plugin\EfClassements\Resources;
 
-use Azuriom\Models\Faction;
+use Azuriom\Plugin\EfClassements\Models\Faction;
 use Azuriom\Models\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 

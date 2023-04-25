@@ -4,7 +4,8 @@
     "description": "Plugin for Azuriom",
     "autoload": {
         "psr-4": {
-            "Azuriom\\Plugin\\EfClassements\\": "src/"
+            "Azuriom\\Plugin\\EfClassements\\": "src/",
+            "Azuriom\\Plugin\\EfClassements\\Model\\": "src/Models/"
         }
     },
     "replace": {

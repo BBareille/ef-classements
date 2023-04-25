@@ -1,15 +1,15 @@
 {
-    "id": "rank-faction",
-    "name": "rank-faction",
-    "description": "Plugin for Azuriom",
-    "version": "1.0.1",
+    "id": "ef-classements",
+    "name": "ef-classements",
+    "description": "Plugins pour les classements de votre serveur Minecraft disponible sur votre site web !",
+    "version": "1.0.2",
     "url": "https://azuriom.com",
     "authors": [
         "Melon"
     ],
     "azuriom_api": "1.0.0",
     "providers": [
-        "\\Azuriom\\Plugin\\RankFaction\\Providers\\RankFactionServiceProvider",
-        "\\Azuriom\\Plugin\\RankFaction\\Providers\\RouteServiceProvider"
+        "\\Azuriom\\Plugin\\EfClassements\\Providers\\RankFactionServiceProvider",
+        "\\Azuriom\\Plugin\\EfClassements\\Providers\\RouteServiceProvider"
     ]
 }

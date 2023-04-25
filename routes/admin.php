@@ -1,6 +1,6 @@
 <?php
 
-use Azuriom\Plugin\RankFaction\Controllers\Admin\AdminController;
+use Azuriom\Plugin\EfClassements\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*

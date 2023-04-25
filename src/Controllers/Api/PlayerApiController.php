@@ -1,11 +1,11 @@
 <?php
 
-namespace Azuriom\Plugin\RankFaction\Controllers\Api;
+namespace Azuriom\Plugin\EfClassements\Controllers\Api;
 
 use Azuriom\Http\Controllers\Controller;
-use Azuriom\Models\Player;
+use Azuriom\Plugin\EfClassements\Models\Player;
 use Illuminate\Http\Request;
-use Azuriom\Plugin\RankFaction\Resources\PlayerResource;
+use Azuriom\Plugin\EfClassements\Resources\PlayerResource;
 
 class PlayerApiController extends Controller
 {

@@ -76,8 +76,8 @@ class RankFactionServiceProvider extends BasePluginServiceProvider
         $this->registerUserNavigation();
 
         Relation::enforceMorphMap([
-            'player' => 'Azuriom\Models\Player',
-            'faction' => 'Azuriom\Models\Faction',
+            'player' => 'Azuriom\Plugin\EfClassements\Models\Player',
+            'faction' => 'Azuriom\Plugin\EfClassements\Models\Faction',
         ]);
     }
 

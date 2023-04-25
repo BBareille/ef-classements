@@ -1,7 +1,7 @@
 <?php
 
-use Azuriom\Plugin\RankFaction\Controllers\Api\PlayerApiController;
-use Azuriom\Plugin\RankFaction\Controllers\Api\FactionApiController;
+use Azuriom\Plugin\EfClassements\Controllers\Api\PlayerApiController;
+use Azuriom\Plugin\EfClassements\Controllers\Api\FactionApiController;
 use Illuminate\Support\Facades\Route;
 
 /*

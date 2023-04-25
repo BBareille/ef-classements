@@ -1,6 +1,6 @@
 <?php
 
-namespace Azuriom\Models;
+namespace Azuriom\Plugin\EfClassements\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;

@@ -3,7 +3,7 @@
 @section('title', 'Paramètres du classement des factions')
 
 @section('content')
-    <form class="form" method="POST" action="{{action('Azuriom\Plugin\RankFaction\Controllers\Admin\AdminController@storeRanking')}}">
+    <form class="form" method="POST" action="{{action('Azuriom\Plugin\EfClassements\Controllers\Admin\AdminController@storeRanking')}}">
         @csrf
         <div class="form-group">
             <label>Nom du classement</label>
@@ -12,7 +12,7 @@
         <div class="form-group">
         <label>Cible du classement</label>
         <select class="form-select w-25" name="target" id="targetEntity">
-            @foreach(Azuriom\Plugin\RankFaction\Controllers\RankingController::getListOfTargetEntities() as $target)
+            @foreach(Azuriom\Plugin\EfClassements\Controllers\RankingController::getListOfTargetEntities() as $target)
                 @if($target == "Island")
                     <option disabled value="{{$target}}">{{$target}}</option>
                 @else
@@ -27,9 +27,6 @@
             <option value='koth'>Koth</option>
             <option value='totem'>Totem</option>
             <option value='players'>Players</option>
-            {{--            @foreach(Azuriom\Plugin\RankFaction\Controllers\RankingController::getListOfCalculation() as $calculation)--}}
-{{--                <option value="{{$calculation->id}}">{{$calculation->name}}</option>--}}
-{{--            @endforeach--}}
         </select>
         </div>
         <button type="submit" class="btn btn-primary mt-3 ">Valider</button>
@@ -41,7 +38,7 @@
     targetEntity.addEventListener("change", ()=> {
         if(targetEntity.value == "Player"){
             selectCalculation.innerHTML = "<option value='kills'>Kill</option><option value='deaths'>Deaths</option>"
-        } else if(targetEntity.value == "FactionCollection"){
+        } else if(targetEntity.value == "Faction"){
             selectCalculation.innerHTML = "<option value='koth'>Koth</option><option value='totem'>Totem</option><option value='players'>Players</option>"
         }
     })

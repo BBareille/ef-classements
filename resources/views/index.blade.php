@@ -13,7 +13,7 @@
 
 
     @foreach($rankingList as $ranking)
-            @php($mainColumn = $ranking->calculation->name)
+            @php($mainColumn = strtolower($ranking->calculation->name))
 
             <table id="table{{$ranking->id}}"
                    data-toggle="table"

@@ -1,10 +1,10 @@
 <?php
 
-namespace Azuriom\Plugin\RankFaction\Controllers\Api;
+namespace Azuriom\Plugin\EfClassements\Controllers\Api;
 
 use Azuriom\Http\Controllers\Controller;
-use Azuriom\Models\Faction;
-use Azuriom\Plugin\RankFaction\Resources\FactionResource;
+use Azuriom\Plugin\EfClassements\Models\Faction;
+use Azuriom\Plugin\EfClassements\Resources\FactionResource;
 use Illuminate\Http\Request;
 
 class FactionApiController extends Controller
