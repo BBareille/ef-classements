@@ -40,13 +40,19 @@ class AdminController extends Controller
         $ranking = new Ranking();
         $ranking->name = $request->name;
         $calculation = Calculation::where('name', $request->calculation)->first();
+        if($calculation == null){
+            $calculation = new Calculation();
+            $calculation->formula = 1;
+            $calculation->name = $request->calculation;
+            $calculation->save();
+        }
         $ranking->calculation_id = $calculation->id;
         $ranking->save();
         $entity = $request->target;
         match($entity){
             "Faction" => $this->attachRankingToEntity(Faction::all(), $ranking),
             "Player" => $this->attachRankingToEntity(Player::all(), $ranking),
-//            "Island" => $ranking->targetEntities()->saveMany(Island::all())
+//            "Island" =>
         };
 
         $ranking->refresh();
@@ -64,9 +70,9 @@ class AdminController extends Controller
         $id = $request->input('id');
         $ranking = Ranking::find($id);
         if(count($ranking->players) > 0){
-            $ranking->players->detach();
+            $ranking->players()->detach();
         } elseif (count($ranking->faction) > 0){
-            $ranking->faction->detach();
+            $ranking->faction()->detach();
         }
         $ranking->delete();
         return redirect()->route('ef-classements.admin.settings')->with('status', 'FactionCollection supprimer');
