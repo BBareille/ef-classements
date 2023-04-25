@@ -1,6 +1,6 @@
 <?php
 
-namespace Azuriom\Plugin\RankFaction\Providers;
+namespace Azuriom\Plugin\EfClassements\Providers;
 
 use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -48,7 +48,7 @@ class RankFactionServiceProvider extends BasePluginServiceProvider
      */
     public function register()
     {
-        // $this->registerMiddleware();
+//        require_once __DIR__.'/../../vendor/autoload.php';
 
         //
     }
@@ -61,6 +61,7 @@ class RankFactionServiceProvider extends BasePluginServiceProvider
     public function boot()
     {
         // $this->registerPolicies();
+
 
         $this->loadViews();
 
@@ -88,7 +89,7 @@ class RankFactionServiceProvider extends BasePluginServiceProvider
     protected function routeDescriptions()
     {
         return [
-            "rank-faction.index" => "Classement faction"
+            "ef-classements.index" => "Classement faction"
         ];
     }
 
@@ -104,10 +105,10 @@ class RankFactionServiceProvider extends BasePluginServiceProvider
                 'name' => 'RankFaction',
                 'type' => 'dropdown',
                 'icon' => '',
-                'route' => 'rank-faction-faction.admin.*',
-                'permission' => 'rank-faction-faction.admin',
+                'route' => 'ef-classements-faction.admin.*',
+                'permission' => 'ef-classements-faction.admin',
                 'items' => [
-                    'rank-faction.admin.settings' => trans('Settings'),
+                    'ef-classements.admin.settings' => trans('Settings'),
                 ],
             ],
         ];

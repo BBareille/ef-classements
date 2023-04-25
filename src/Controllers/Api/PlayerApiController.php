@@ -3,11 +3,9 @@
 namespace Azuriom\Plugin\RankFaction\Controllers\Api;
 
 use Azuriom\Http\Controllers\Controller;
-use Azuriom\Http\Resources\FactionResource;
-use Azuriom\Http\Resources\PlayerResource;
-use Azuriom\Models\Faction;
 use Azuriom\Models\Player;
 use Illuminate\Http\Request;
+use Azuriom\Plugin\RankFaction\Resources\PlayerResource;
 
 class PlayerApiController extends Controller
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Azuriom\Plugin\RankFaction\Controllers;
+namespace Azuriom\Plugin\EfClassements\Controllers;
 
 use Azuriom\Http\Controllers\Controller;
 

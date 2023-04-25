@@ -1,12 +1,11 @@
 <?php
 
-namespace Azuriom\Plugin\RankFaction\Controllers\Admin;
+namespace Azuriom\Plugin\EfClassements\Controllers\Admin;
 
 use Azuriom\Http\Controllers\Controller;
 use Azuriom\Models\Calculation;
 use Azuriom\Models\Faction;
 use Azuriom\Models\Player;
-use Azuriom\Models\Rankable;
 use Azuriom\Models\Ranking;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -26,14 +25,14 @@ class AdminController extends Controller
     {
         $rankingList = Ranking::all();
 
-        return view('rank-faction::admin.index', [
+        return view('ef-classements::admin.index', [
             "rankingList" => $rankingList
         ]);
     }
 
     public function rankingForm(Request $request){
 
-        return \view('rank-faction::admin.ranking');
+        return \view('ef-classements::admin.ranking');
     }
 
     public function storeRanking(Request $request){
@@ -50,7 +49,7 @@ class AdminController extends Controller
         };
 
         $ranking->refresh();
-        return redirect()->route('rank-faction.admin.settings')->with('status', 'Classement ajouté');
+        return redirect()->route('ef-classements.admin.settings')->with('status', 'Classement ajouté');
     }
 
     private function attachRankingToEntity($entities, $ranking){
@@ -65,6 +64,6 @@ class AdminController extends Controller
         $ranking = Ranking::find($id);
         $ranking->targetEntities()->detach();
         $ranking->delete();
-        return redirect()->route('rank-faction.admin.settings')->with('status', 'FactionCollection supprimer');
+        return redirect()->route('ef-classements.admin.settings')->with('status', 'FactionCollection supprimer');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Azuriom\Plugin\Http\Resources;
+namespace Azuriom\Plugin\EfClassements\Resources;
 
 use Azuriom\Models\Faction;
 use Azuriom\Models\User;

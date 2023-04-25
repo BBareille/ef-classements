@@ -1,6 +1,6 @@
 <?php
 
-namespace Azuriom\Plugin\RankFaction\Providers;
+namespace Azuriom\Plugin\EfClassements\Providers;
 
 use Azuriom\Extensions\Plugin\BaseRouteServiceProvider;
 use Illuminate\Support\Facades\Route;

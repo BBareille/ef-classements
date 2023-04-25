@@ -1,6 +1,6 @@
 <?php
 
-namespace Azuriom\Plugin\RankFaction\Controllers;
+namespace Azuriom\Plugin\EfClassements\Controllers;
 
 use Azuriom\Http\Controllers\Controller;
 use Azuriom\Models\Faction;
@@ -19,7 +19,7 @@ class RankFactionHomeController extends Controller
     public function index()
     {
         $rankingList = Ranking::all();
-        return view('rank-faction::index', [
+        return view('ef-classements::index', [
             'rankingList' => $rankingList
         ]);
     }

@@ -4,7 +4,7 @@ namespace Azuriom\Plugin\RankFaction\Controllers\Api;
 
 use Azuriom\Http\Controllers\Controller;
 use Azuriom\Models\Faction;
-use Azuriom\Http\Resources\FactionResource;
+use Azuriom\Plugin\RankFaction\Resources\FactionResource;
 use Illuminate\Http\Request;
 
 class FactionApiController extends Controller

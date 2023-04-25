@@ -4,7 +4,7 @@
     "description": "Plugin for Azuriom",
     "autoload": {
         "psr-4": {
-            "Azuriom\\Plugin\\RankFaction\\": "src/"
+            "Azuriom\\Plugin\\EfClassements\\": "src/"
         }
     },
     "replace": {

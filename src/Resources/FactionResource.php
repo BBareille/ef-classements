@@ -1,6 +1,6 @@
 <?php
 
-namespace Azuriom\Http\Resources;
+namespace Azuriom\Plugin\EfClassements\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -13,7 +13,7 @@ class FactionResource extends JsonResource
             "name" => $this->name,
             "totem" => $this->totem,
             "koth" => $this->koth,
-            "players" => PlayerResource::collection($this->players)
+            "players" => \Azuriom\Http\Resources\PlayerResource::collection($this->players)
         ];
     }
 }
