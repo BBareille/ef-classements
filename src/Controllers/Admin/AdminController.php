@@ -39,42 +39,32 @@ class AdminController extends Controller
     public function storeRanking(Request $request){
         $ranking = new Ranking();
         $ranking->name = $request->name;
+        $ranking->type = $request->target;
         $calculation = Calculation::where('name', $request->calculation)->first();
         if($calculation == null){
-            $calculation = new Calculation();
-            $calculation->formula = 1;
-            $calculation->name = $request->calculation;
-            $calculation->save();
+            $calculation = $this->newCalculation($request->calculation);
         }
+
         $ranking->calculation_id = $calculation->id;
         $ranking->save();
-        $entity = $request->target;
-        match($entity){
-            "Faction" => $this->attachRankingToEntity(Faction::all(), $ranking),
-            "Player" => $this->attachRankingToEntity(Player::all(), $ranking),
-//            "Island" =>
-        };
 
-        $ranking->refresh();
         return redirect()->route('ef-classements.admin.settings')->with('status', 'Classement ajouté');
     }
 
-    private function attachRankingToEntity($entities, $ranking){
-        foreach ($entities as $entity){
-            $entity->ranking()->save($ranking);
-        }
+    private function newCalculation($name): Calculation{
+        $calculation = new Calculation();
+        $calculation->formula = 1;
+        $calculation->name = $name;
+        $calculation->save();
+        return $calculation;
     }
 
     public function destroyRanking(Request $request)
     {
         $id = $request->input('id');
         $ranking = Ranking::find($id);
-        if(count($ranking->players) > 0){
-            $ranking->players()->detach();
-        } elseif (count($ranking->faction) > 0){
-            $ranking->faction()->detach();
-        }
         $ranking->delete();
+
         return redirect()->route('ef-classements.admin.settings')->with('status', 'FactionCollection supprimer');
     }
 }

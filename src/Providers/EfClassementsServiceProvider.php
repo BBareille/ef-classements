@@ -3,9 +3,15 @@
 namespace Azuriom\Plugin\EfClassements\Providers;
 
 use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
+use Azuriom\Plugin\EfClassements\Models\Faction;
+use Azuriom\Plugin\EfClassements\Models\Player;
+use Azuriom\Plugin\EfClassements\Models\Ranking;
+use Azuriom\Plugin\EfClassements\Observers\FactionObserver;
+use Azuriom\Plugin\EfClassements\Observers\PlayerObserver;
+use Azuriom\Plugin\EfClassements\Observers\RankingObserver;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
-class RankFactionServiceProvider extends BasePluginServiceProvider
+class EfClassementsServiceProvider extends BasePluginServiceProvider
 {
     /**
      * The plugin's global HTTP middleware stack.
@@ -13,8 +19,8 @@ class RankFactionServiceProvider extends BasePluginServiceProvider
      * @var array
      */
     protected array $middleware = [
-        // \Azuriom\Plugin\RankFaction\Middleware\ExampleMiddleware::class,
     ];
+
 
     /**
      * The plugin's route middleware groups.
@@ -29,7 +35,6 @@ class RankFactionServiceProvider extends BasePluginServiceProvider
      * @var array
      */
     protected array $routeMiddleware = [
-        // 'example' => \Azuriom\Plugin\RankFaction\Middleware\ExampleRouteMiddleware::class,
     ];
 
     /**
@@ -48,9 +53,6 @@ class RankFactionServiceProvider extends BasePluginServiceProvider
      */
     public function register()
     {
-//        require_once __DIR__.'/../../vendor/autoload.php';
-
-        //
     }
 
     /**
@@ -79,6 +81,10 @@ class RankFactionServiceProvider extends BasePluginServiceProvider
             'player' => 'Azuriom\Plugin\EfClassements\Models\Player',
             'faction' => 'Azuriom\Plugin\EfClassements\Models\Faction',
         ]);
+
+        Faction::observe(FactionObserver::class);
+        Ranking::observe(RankingObserver::class);
+        Player::observe(PlayerObserver::class);
     }
 
     /**
@@ -89,7 +95,7 @@ class RankFactionServiceProvider extends BasePluginServiceProvider
     protected function routeDescriptions()
     {
         return [
-            "ef-classements.index" => "Classement faction"
+            "ef-classements.index" => "Classement"
         ];
     }
 
@@ -101,14 +107,14 @@ class RankFactionServiceProvider extends BasePluginServiceProvider
     protected function adminNavigation()
     {
         return [
-            'RankFaction' =>  [
-                'name' => 'RankFaction',
+            'Ef-Classements' =>  [
+                'name' => 'EfClassements',
                 'type' => 'dropdown',
                 'icon' => '',
                 'route' => 'ef-classements-faction.admin.*',
                 'permission' => 'ef-classements-faction.admin',
                 'items' => [
-                    'ef-classements.admin.settings' => trans('Settings'),
+                    'ef-classements.admin.settings' => trans('Paramètres'),
                 ],
             ],
         ];

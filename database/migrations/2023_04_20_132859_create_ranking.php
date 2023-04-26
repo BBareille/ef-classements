@@ -17,6 +17,7 @@ return new class extends Migration
         Schema::create('rankings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('type');
             $table->unsignedInteger('calculation_id');
             $table->foreign('calculation_id')
                 ->references('id')->on('calculations')

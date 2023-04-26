@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  * @property int $id
  * @property string $name
  * @property int $calculation_id
- * @property string $order
+ * @property string $type
  *
  * @method static Builder enabled()
  */
@@ -30,7 +30,7 @@ class Ranking extends Model
 
     public function faction(): MorphToMany
     {
-        return $this->morphedByMany(Faction::class, 'rankable')->orderBy('koth', 'desc');
+        return $this->morphedByMany(Faction::class, 'rankable');
     }
 
     public function calculation(): BelongsTo

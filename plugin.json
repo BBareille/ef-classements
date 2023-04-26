@@ -9,7 +9,7 @@
     ],
     "azuriom_api": "1.0.0",
     "providers": [
-        "\\Azuriom\\Plugin\\EfClassements\\Providers\\RankFactionServiceProvider",
+        "\\Azuriom\\Plugin\\EfClassements\\Providers\\EfClassementsServiceProvider",
         "\\Azuriom\\Plugin\\EfClassements\\Providers\\RouteServiceProvider"
     ]
 }
