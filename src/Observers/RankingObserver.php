@@ -21,9 +21,6 @@ class RankingObserver
         $ranking->refresh();
     }
 
-    public function saving(Ranking $ranking){
-    }
-
     public function deleting(Ranking $ranking){
         if($ranking->type == 'Player'){
             $ranking->players()->detach();

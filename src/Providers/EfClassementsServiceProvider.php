@@ -43,7 +43,6 @@ class EfClassementsServiceProvider extends BasePluginServiceProvider
      * @var array
      */
     protected array $policies = [
-        // User::class => UserPolicy::class,
     ];
 
     /**
@@ -62,9 +61,6 @@ class EfClassementsServiceProvider extends BasePluginServiceProvider
      */
     public function boot()
     {
-        // $this->registerPolicies();
-
-
         $this->loadViews();
 
         $this->loadTranslations();

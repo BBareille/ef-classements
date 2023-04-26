@@ -50,17 +50,6 @@ class Faction extends Model
     public function players(): HasMany{
         return $this->hasMany(Player::class);
     }
-    public static function getRankBy(): Collection
-    {
-            return DB::table('faction')
-                ->orderBy('koth', 'desc')
-                ->get();
-    }
-
-    function getId()
-    {
-        return $this->id;
-    }
 
     function getClass()
     {

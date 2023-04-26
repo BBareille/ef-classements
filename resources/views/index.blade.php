@@ -39,7 +39,6 @@
             @if(count($ranking->faction)>0)
                 @foreach($ranking->faction()->orderBy($mainColumn, 'desc')->get() as $faction)
                     <tr>
-
                         <td>{{$loop->index +1}}</td>
                         <td>{{$faction->name}}</td>
                         <td>{{$faction->$mainColumn}}</td>

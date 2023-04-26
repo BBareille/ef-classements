@@ -1,6 +1,5 @@
 <?php
 
-use Azuriom\Models\Calculation;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('rankings', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->string('type');
-            $table->integer('orderBy');
+        Schema::create('columns', function (Blueprint $table) {
+            $table->id();
+            $table->boolean('isDisplayed');
+            $table->smallInteger('weight');
+            $table->integer('value');
+            $table->integer('ranking_id');
 
-            $table->foreign('orderBy')
-                ->references('id')->on('columns')
+            $table->foreign('ranking_id')
+                ->references('id')->on('rankings')
                 ->onDelete('cascade');
-
         });
     }
 
@@ -34,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ranking');
+        Schema::dropIfExists('columns');
     }
 };

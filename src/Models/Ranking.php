@@ -4,15 +4,21 @@ namespace Azuriom\Plugin\EfClassements\Models;
 
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
  * @property int $id
  * @property string $name
- * @property int $calculation_id
  * @property string $type
+ * @property Column $orderBy
+ * @property Collection|Player[] $players
+ * @property Collection|Faction[] $faction
+ * @property Collection|Column[] $columns
  *
  * @method static Builder enabled()
  */
@@ -33,8 +39,14 @@ class Ranking extends Model
         return $this->morphedByMany(Faction::class, 'rankable');
     }
 
-    public function calculation(): BelongsTo
+    public function orderBy(): HasOne
     {
-        return $this->belongsTo(Calculation::class);
+        return $this->hasOne(Column::class);
     }
+
+    public function columns(): hasMany
+    {
+        return $this->hasMany(Column::class);
+    }
+
 }
