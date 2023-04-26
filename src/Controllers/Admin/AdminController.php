@@ -3,14 +3,11 @@
 namespace Azuriom\Plugin\EfClassements\Controllers\Admin;
 
 use Azuriom\Http\Controllers\Controller;
-use Azuriom\Plugin\EfClassements\Models\Calculation;
-use Azuriom\Plugin\EfClassements\Models\Faction;
-use Azuriom\Plugin\EfClassements\Models\Player;
+use Azuriom\Plugin\EfClassements\Models\Column;
 use Azuriom\Plugin\EfClassements\Models\Ranking;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -40,13 +37,22 @@ class AdminController extends Controller
         $ranking = new Ranking();
         $ranking->name = $request->name;
         $ranking->type = $request->target;
-        $calculation = Calculation::where('name', $request->calculation)->first();
-        if($calculation == null){
-            $calculation = $this->newCalculation($request->calculation);
+        $mainColumn = new Column();
+        $mainColumn->name = $request->calculation;
+        $mainColumn->isDisplayed = true;
+        $mainColumn->save();
+        $columnList = [];
+        foreach ($request->columns as $column){
+            $newColumn = new Column();
+            $newColumn->name = $column;
+            $columnList[] = $newColumn;
         }
 
-        $ranking->calculation_id = $calculation->id;
+        $ranking->orderBy = $mainColumn->id;
+
+        $ranking->refresh();
         $ranking->save();
+        $ranking->columns()->saveMany($columnList);
 
         return redirect()->route('ef-classements.admin.settings')->with('status', 'Classement ajouté');
     }

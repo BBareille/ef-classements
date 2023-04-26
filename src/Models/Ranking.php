@@ -41,7 +41,7 @@ class Ranking extends Model
 
     public function orderBy(): HasOne
     {
-        return $this->hasOne(Column::class);
+        return $this->hasOne(Column::class, 'orderBy', 'id');
     }
 
     public function columns(): hasMany

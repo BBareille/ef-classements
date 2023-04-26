@@ -13,7 +13,7 @@
 
 
     @foreach($rankingList as $ranking)
-            @php($mainColumn = strtolower($ranking->calculation->name))
+        @php($mainColumn = \Azuriom\Plugin\EfClassements\Models\Column::find($ranking->orderBy)->name)
 
             <table id="table{{$ranking->id}}"
                    data-toggle="table"
@@ -33,17 +33,28 @@
                     <th>Pos</th>
                     <th>Nom</th>
                     <th>{{$mainColumn}}</th>
+                    @foreach($ranking->columns as $column)
+                        @if($column->name != $mainColumn)
+                            <th>{{$column->name}}</th>
+                        @endif
+
+                    @endforeach
                 </tr>
             </thead>
             <tbody>
+
             @if(count($ranking->faction)>0)
                 @foreach($ranking->faction()->orderBy($mainColumn, 'desc')->get() as $faction)
                     <tr>
                         <td>{{$loop->index +1}}</td>
                         <td>{{$faction->name}}</td>
-                        <td>{{$faction->$mainColumn}}</td>
+                        @foreach($ranking->columns as $column)
+                            @php($name = $column->name)
+                                <td>{{$faction->$name}}</td>
+                        @endforeach
                     </tr>
                 @endforeach
+
             @else
                 @if(count($ranking->players)>0)
                     @foreach($ranking->players()->orderBy($mainColumn, 'desc')->get() as $players)
@@ -51,13 +62,13 @@
                             <td>{{$loop->index +1}}</td>
                             <td>{{$players->name()}}</td>
                             <td>{{$players->$mainColumn}}</td>
+
                         </tr>
                     @endforeach
                 @endif
             @endif
 
             </tbody>
-
             </table>
 
 

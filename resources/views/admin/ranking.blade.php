@@ -29,6 +29,26 @@
             <option value='players'>Players</option>
         </select>
         </div>
+
+        <fieldset>
+            <legend><h2>Colonnes dans le classement</h2></legend>
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="koth">koth</label>
+            <input class="form-check-input" type="checkbox" value="koth" name="columns[]" id="koth">
+        </div>
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="totem">totem</label>
+            <input class="form-check-input" type="checkbox" value="totem" name="columns[]" id="totem">
+        </div>
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="players">players</label>
+            <input class="form-check-input" type="checkbox" value="players" name="columns[]" id="players">
+        </div>
+        <div class="form-check form-switch">
+            <label class="form-check-label" for="points">points</label>
+            <input class="form-check-input" type="checkbox" value="points" name="columns[]" id="points">
+        </div>
+        </fieldset>
         <button type="submit" class="btn btn-primary mt-3 ">Valider</button>
     </form>
 

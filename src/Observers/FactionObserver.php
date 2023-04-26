@@ -12,7 +12,7 @@ class FactionObserver
     }
 
     public function saved(Faction $faction){
-        $rankings = Ranking::where('type', 'Faction');
+        $rankings = Ranking::where('type', 'Faction')->get();
 
         foreach ($rankings as $ranking) {
             $ranking->faction()->attach($faction);

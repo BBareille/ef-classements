@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
+ * @property int $id
  * @property string $name
- * @property int $value
  * @property boolean $isDisplayed
  * @property int $weight
  * @property int $ranking_id
@@ -20,14 +20,14 @@ class Column extends Model
 {
     public $timestamps = false;
 
-    public function getPoint(): int
-    {
-        return $this->value * $this->weight;
-    }
+    protected $attributes = [
+      'isDisplayed' => false,
+      'weight' => 1,
+    ];
 
     public function ranking(): BelongsTo
     {
-        return $this->belongsTo(Ranking::class);
+        return $this->belongsTo(Ranking::class, 'ranking_id', 'id');
     }
 
 

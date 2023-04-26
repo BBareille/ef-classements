@@ -13,14 +13,14 @@ class PlayerObserver
     }
 
     public function saved(Player $player){
-        $rankings = Ranking::where('type', 'Player');
+        $rankings = Ranking::where('type', 'Player')->get();
 
         foreach ($rankings as $ranking) {
-            $ranking->faction()->attach($player);
+            $ranking->players()->attach($player);
         }
     }
 
     public function deleting(Player $player){
-        $player->ranking()->detach();
+        $player->players()->detach();
     }
 }

@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::dropIfExists('columns');
         Schema::create('columns', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
             $table->boolean('isDisplayed');
             $table->smallInteger('weight');
-            $table->integer('value');
-            $table->unsignedInteger('ranking_id');
+            $table->unsignedInteger('ranking_id')->nullable();
 
             $table->foreign('ranking_id')->references('id')->on('rankings')->onDelete('cascade');
         });
