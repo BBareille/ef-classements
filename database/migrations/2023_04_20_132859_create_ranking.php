@@ -14,17 +14,15 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('rankings');
         Schema::create('rankings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('type');
-            $table->integer('orderBy');
-
-            $table->foreign('orderBy')
-                ->references('id')->on('columns')
-                ->onDelete('cascade');
-
+            $table->unsignedInteger('orderBy');
         });
+
+
     }
 
     /**

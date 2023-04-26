@@ -13,12 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('rankables');
-        Schema::create('rankables', function (Blueprint $table) {
-            $table->unsignedInteger('ranking_id');
-            $table->unsignedInteger('rankable_id');
-            $table->string('rankable_type');
+        Schema::enableForeignKeyConstraints();
+        Schema::table('rankings', function (Blueprint $table) {
+            $table->foreign('orderBy')->references('id')->on('columns')->onDelete('cascade');
         });
+
     }
 
     /**
@@ -28,6 +27,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ranking_to_faction');
+        Schema::table('ranking', function (Blueprint $table) {
+            //
+        });
     }
 };

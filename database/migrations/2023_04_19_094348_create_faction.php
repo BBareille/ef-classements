@@ -13,6 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('faction');
         Schema::create('faction', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');

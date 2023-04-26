@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('columns');
         Schema::create('columns', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->boolean('isDisplayed');
             $table->smallInteger('weight');
             $table->integer('value');
-            $table->integer('ranking_id');
+            $table->unsignedInteger('ranking_id');
 
-            $table->foreign('ranking_id')
-                ->references('id')->on('rankings')
-                ->onDelete('cascade');
+            $table->foreign('ranking_id')->references('id')->on('rankings')->onDelete('cascade');
         });
     }
 
