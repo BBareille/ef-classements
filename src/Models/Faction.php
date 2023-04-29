@@ -23,6 +23,7 @@ use Illuminate\Support\Facades\DB;
 
 class Faction extends Model
 {
+    public $params = ['totem', 'koth', 'points'];
     /**
      * The primary key associated with the table.
      *
@@ -54,5 +55,26 @@ class Faction extends Model
     function getClass()
     {
         return get_class($this);
+    }
+
+    function valueFor($columnId){
+        $column = Column::find($columnId);
+        foreach ($this->attributes as $attribute => $value) {
+            if($column->name == $attribute){
+                return $value;
+            }
+        }
+    }
+
+    function points($rankingId){
+        $ranking = Ranking::find($rankingId);
+        $columns = $ranking->columns;
+        foreach ($columns as $column) {
+            $valueList[]= $this->valueFor($column->id);
+        }
+        return array_reduce($valueList, function ($carry, $item){
+            $carry += $item;
+            return $carry;
+        });
     }
 }

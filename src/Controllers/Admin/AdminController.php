@@ -4,6 +4,8 @@ namespace Azuriom\Plugin\EfClassements\Controllers\Admin;
 
 use Azuriom\Http\Controllers\Controller;
 use Azuriom\Plugin\EfClassements\Models\Column;
+use Azuriom\Plugin\EfClassements\Models\Faction;
+use Azuriom\Plugin\EfClassements\Models\Player;
 use Azuriom\Plugin\EfClassements\Models\Ranking;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -30,7 +32,16 @@ class AdminController extends Controller
 
     public function rankingForm(Request $request){
 
-        return \view('ef-classements::admin.ranking');
+        $faction_args = get_class_vars(Faction::class);
+        $player_args = get_class_vars(Player::class);
+        $entities = [
+            'Faction' => $faction_args['params'],
+            'Player' => $player_args['params']
+        ];
+
+        return \view('ef-classements::admin.ranking', [
+            'entities' => $entities,
+        ]);
     }
 
     public function storeRanking(Request $request){

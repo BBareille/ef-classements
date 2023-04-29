@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
+use Azuriom\Plugin\EfClassements\Models\Faction;
+use Azuriom\Plugin\EfClassements\Models\Player;
 
 /**
  * @property int $id
@@ -47,6 +49,33 @@ class Ranking extends Model
     public function columns(): hasMany
     {
         return $this->hasMany(Column::class);
+    }
+
+    public function getEntityPoints(int $id, $entityClass){
+        $modelNamespace = 'Azuriom\Plugin\EfClassements\Models\\';
+        $entity = ($modelNamespace.$entityClass)::find($id);
+
+        foreach ($this->columns as $column) {
+            $valueList[] = $column->weight * $entity->valueFor($column->id);
+        }
+        return array_reduce($valueList, function ($carry, $item){
+            $carry += $item;
+            return $carry;
+        });
+    }
+
+    public function getSortedEntityBy($entityClass, $sortItem){
+        $entities = $this->$entityClass()->get();
+        foreach ($entities as $entity) {
+            $entityList[] = $entity;
+        }
+
+        usort($entityList, function ($a, $b) use ($sortItem){
+            return   $b->$sortItem <=> $a->$sortItem;
+        });
+
+
+        return $entityList;
     }
 
 }

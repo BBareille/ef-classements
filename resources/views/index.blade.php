@@ -35,7 +35,10 @@
                     <th>{{$mainColumn}}</th>
                     @foreach($ranking->columns as $column)
                         @if($column->name != $mainColumn)
-                            <th>{{$column->name}}</th>
+                            @if($column->isDisplayed == 1)
+                                <th>{{$column->name}}</th>
+                            @endif
+
                         @endif
 
                     @endforeach
@@ -44,25 +47,39 @@
             <tbody>
 
             @if(count($ranking->faction)>0)
-                @foreach($ranking->faction()->orderBy($mainColumn, 'desc')->get() as $faction)
+                @foreach($ranking->getSortedEntityBy('Faction', $mainColumn) as $faction)
                     <tr>
                         <td>{{$loop->index +1}}</td>
                         <td>{{$faction->name}}</td>
                         @foreach($ranking->columns as $column)
+                            @if($column->isDisplayed == 1)
                             @php($name = $column->name)
+                                @if($name == 'points')
+                                    <td>{{$ranking->getEntityPoints($faction->id, 'Faction')}}</td>
+                                @else
                                 <td>{{$faction->$name}}</td>
+                                @endif
+                            @endif
                         @endforeach
                     </tr>
                 @endforeach
 
             @else
                 @if(count($ranking->players)>0)
-                    @foreach($ranking->players()->orderBy($mainColumn, 'desc')->get() as $players)
+                    @foreach($ranking->players()->orderBy($mainColumn, 'desc')->get() as $player)
                         <tr>
                             <td>{{$loop->index +1}}</td>
-                            <td>{{$players->name()}}</td>
-                            <td>{{$players->$mainColumn}}</td>
-
+                            <td>{{$player->name()}}</td>
+                            @foreach($ranking->columns as $column)
+                                @if($column->isDisplayed == 1)
+                                    @php($name = $column->name)
+                                    @if($name == 'points')
+                                        <td>{{$ranking->getEntityPoints($player->id, 'Player')}}</td>
+                                    @else
+                                        <td>{{$player->$name}}</td>
+                                    @endif
+                                @endif
+                            @endforeach
                         </tr>
                     @endforeach
                 @endif

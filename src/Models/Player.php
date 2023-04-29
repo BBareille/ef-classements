@@ -1,5 +1,4 @@
 <?php
-
 namespace Azuriom\Plugin\EfClassements\Models;
 
 use Azuriom\Models\User;
@@ -20,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  */
 class Player extends Model
 {
+    public $params = ['kills', 'deaths', 'points'];
 
     public $timestamps = false;
 
@@ -38,5 +38,26 @@ class Player extends Model
 
     public function name(){
         return User::find($this->user_id)->name;
+    }
+
+    function valueFor($columnId){
+        $column = Column::find($columnId);
+        foreach ($this->attributes as $attribute => $value) {
+            if($column->name == $attribute){
+                return $value;
+            }
+        }
+    }
+
+    function points($rankingId){
+        $ranking = Ranking::find($rankingId);
+        $columns = $ranking->columns;
+        foreach ($columns as $column) {
+            $valueList[]= $this->valueFor($column->id);
+        }
+        return array_reduce($valueList, function ($carry, $item){
+            $carry += $item;
+            return $carry;
+        });
     }
 }
