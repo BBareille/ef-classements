@@ -65,8 +65,8 @@
                 @endforeach
 
             @else
-                @if(count($ranking->players)>0)
-                    @foreach($ranking->players()->orderBy($mainColumn, 'desc')->get() as $player)
+                @if(count($ranking->player)>0)
+                    @foreach($ranking->getSortedEntityBy('Player', $mainColumn) as $player)
                         <tr>
                             <td>{{$loop->index +1}}</td>
                             <td>{{$player->name()}}</td>
@@ -82,6 +82,7 @@
                             @endforeach
                         </tr>
                     @endforeach
+
                 @endif
             @endif
 

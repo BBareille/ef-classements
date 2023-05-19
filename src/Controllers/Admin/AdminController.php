@@ -56,6 +56,12 @@ class AdminController extends Controller
         foreach ($request->columns as $column){
             $newColumn = new Column();
             $newColumn->name = $column;
+            $newColumn->isDisplayed = true;
+            foreach ($request->weight as $key => $weight){
+                if ($newColumn->name == $key){
+                    $newColumn->weight = $weight;
+                }
+            }
             $columnList[] = $newColumn;
         }
 
@@ -68,13 +74,13 @@ class AdminController extends Controller
         return redirect()->route('ef-classements.admin.settings')->with('status', 'Classement ajouté');
     }
 
-    private function newCalculation($name): Calculation{
-        $calculation = new Calculation();
-        $calculation->formula = 1;
-        $calculation->name = $name;
-        $calculation->save();
-        return $calculation;
-    }
+//    private function newCalculation($name): Calculation{
+//        $calculation = new Calculation();
+//        $calculation->formula = 1;
+//        $calculation->name = $name;
+//        $calculation->save();
+//        return $calculation;
+//    }
 
     public function destroyRanking(Request $request)
     {

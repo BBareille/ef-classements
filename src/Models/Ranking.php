@@ -31,7 +31,7 @@ class Ranking extends Model
     /**
      * Get all of the entities for this ranking.
      */
-    public function players(): MorphToMany
+    public function player(): MorphToMany
     {
         return $this->morphedByMany(Player::class, 'rankable');
     }
@@ -64,8 +64,18 @@ class Ranking extends Model
         });
     }
 
-    public function getSortedEntityBy($entityClass, $sortItem){
+    public function getSortedEntityBy($entityClass, $sortItem): array
+    {
         $entities = $this->$entityClass()->get();
+
+        $entityList = [];
+
+        if ($sortItem == 'points'){
+            foreach ($entities as $entity){
+                $entity->points = $this->getEntityPoints($entity->id, $entityClass);
+            }
+        }
+
         foreach ($entities as $entity) {
             $entityList[] = $entity;
         }
