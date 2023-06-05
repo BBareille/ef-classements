@@ -6,6 +6,7 @@ use Azuriom\Http\Controllers\Controller;
 use Azuriom\Plugin\EfClassements\Models\Faction;
 use Azuriom\Plugin\EfClassements\Resources\FactionResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class FactionApiController extends Controller
 {
@@ -17,7 +18,8 @@ class FactionApiController extends Controller
     public function store(Request $request)
     {
         $faction = new Faction();
-        $faction->name = $request->name;
+        $faction->id = $request->id;
+        $faction->name = $request->name ?? "Erreur ?";
         $faction->koth = $request->koth ?? 0;
         $faction->totem = $request->totem ?? 0;
         $faction->save();
