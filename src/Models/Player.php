@@ -19,10 +19,16 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  */
 class Player extends Model
 {
-    public $params = ['kills', 'deaths', 'points'];
+    public $params = ['id','kills', 'deaths', 'points'];
+    protected $fillable = ['id','kills', 'deaths', 'points'];
     protected $keyType = 'string';
 
     public $timestamps = false;
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+    }
 
     public function ranking(): MorphToMany
     {

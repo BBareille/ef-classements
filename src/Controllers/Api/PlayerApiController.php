@@ -17,14 +17,13 @@ class PlayerApiController extends Controller
 
     public function store(Request $request)
     {
-            $player = new Player();
-            $player->id = $request->id;
+            $player = Player::find($request->id) ?? new Player(['id' => $request->id]);
             $player->user_id = $request->user_id ?? 1;
             $player->faction_id = $request->faction_id ?? null;
             $player->kills = $request->kills ?? 0;
             $player->deaths = $request->deaths ?? 0;
             $player->save();
-            return response()->json($request);
+            return response()->json($player);
     }
 
     public function show(int $playerId)

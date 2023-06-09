@@ -17,12 +17,12 @@ return new class extends Migration
         Schema::create('players', function (Blueprint $table) {
             $table->text('id')->primary();
             $table->unsignedInteger('user_id');
-            $table->unsignedInteger('faction_id')->nullable(true);
+            $table->bigInteger('faction_id')->foreign('faction_id')->references('id')->on('faction')->nullable();
             $table->unsignedInteger('kills');
             $table->unsignedInteger('deaths');
 
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('faction_id')->references('id')->on('faction');
+/*            $table;*/
         });
     }
 

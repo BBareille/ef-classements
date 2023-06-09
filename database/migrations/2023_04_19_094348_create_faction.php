@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('faction');
         Schema::create('faction', function (Blueprint $table) {
-            $table->bigInteger('id')->primary();
+            $table->id();
             $table->string('name');
             $table->integer('totem')->default(0);
             $table->integer('koth')->default(0);
