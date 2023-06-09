@@ -45,7 +45,9 @@ class FactionApiController extends Controller
     }
 
     public function destroy(Request $request) {
-        $faction = Faction::destroy($request->id);
+        $faction = Faction::find($request->id);
+        $faction->players()->detach();
+        $faction->delete();
 
         return response()->json($faction);
     }

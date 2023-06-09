@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 /**
- * @property int $id
+ * @property string $id
  * @property int $user_id
  * @property int $faction_id
  * @property int $kills
@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
 class Player extends Model
 {
     public $params = ['kills', 'deaths', 'points'];
+    protected $keyType = 'string';
 
     public $timestamps = false;
 

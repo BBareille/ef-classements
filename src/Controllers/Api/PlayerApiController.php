@@ -6,6 +6,7 @@ use Azuriom\Http\Controllers\Controller;
 use Azuriom\Plugin\EfClassements\Models\Player;
 use Illuminate\Http\Request;
 use Azuriom\Plugin\EfClassements\Resources\PlayerResource;
+use mysql_xdevapi\Exception;
 
 class PlayerApiController extends Controller
 {
@@ -16,13 +17,14 @@ class PlayerApiController extends Controller
 
     public function store(Request $request)
     {
-        $player = new Player();
-        $player->user_id = $request->user_id;
-        $player->faction_id = $request->faction_id ?? null;
-        $player->kills = $request->kills ?? 0;
-        $player->deaths = $request->deaths ?? 0;
-        $player->save();
-        return response()->json($player);
+            $player = new Player();
+            $player->id = $request->id;
+            $player->user_id = $request->user_id ?? 1;
+            $player->faction_id = $request->faction_id ?? null;
+            $player->kills = $request->kills ?? 0;
+            $player->deaths = $request->deaths ?? 0;
+            $player->save();
+            return response()->json($request);
     }
 
     public function show(int $playerId)
@@ -34,12 +36,10 @@ class PlayerApiController extends Controller
 
     public function update(Request $request)
     {
-        $player = Player::find($request->id);
-        $player->faction_id = $request->faction_id ?? $player->faction_id;
-        $player->kills = $request->kills ?? $player->kills;
-        $player->deaths = $request->deaths ?? $player->deaths;
-        $player->save();
-
-        return response()->json($player);
+        try{
+            return $this->store($request);
+        }catch (\Exception $exception){
+            return response()->json(["id" => $request->id, "error" => $exception->getMessage()]);
+        }
     }
 }

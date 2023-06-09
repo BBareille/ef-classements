@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('players');
         Schema::create('players', function (Blueprint $table) {
-            $table->increments('id');
+            $table->text('id')->primary();
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('faction_id')->nullable(true);
             $table->unsignedInteger('kills');
