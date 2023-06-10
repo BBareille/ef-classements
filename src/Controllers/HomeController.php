@@ -18,6 +18,21 @@ class HomeController extends Controller
     public function index()
     {
         $rankingList = Ranking::all();
+//        foreach ($rankingList as $ranking)
+//        {
+//
+//            $mainColumn = \Azuriom\Plugin\EfClassements\Models\Column::find($ranking->orderBy)->name;
+//
+//            if($ranking->player){
+//                foreach ($ranking->getSortedEntityBy('Player', $mainColumn) as $player)
+//                {
+////            $test = new Ranking();
+//                    dd($player->name);
+//                }
+//            }
+//
+//        }
+
         return view('ef-classements::index', [
             'rankingList' => $rankingList
         ]);

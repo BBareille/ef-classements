@@ -111,7 +111,6 @@
             function show(id){
                 let ranking = document.getElementById('table'+id)
                 let totalRanking = ranking.parentNode.parentNode.parentNode
-                // if(ranking.parentNode)
                 console.log()
                 if(totalRanking.style.display == "none") {
                     css(totalRanking, {

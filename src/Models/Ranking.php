@@ -27,6 +27,7 @@ use Azuriom\Plugin\EfClassements\Models\Player;
 class Ranking extends Model
 {
 
+    public $keyType = 'string';
     public $timestamps = false;
     /**
      * Get all of the entities for this ranking.
@@ -51,7 +52,7 @@ class Ranking extends Model
         return $this->hasMany(Column::class);
     }
 
-    public function getEntityPoints(int $id, $entityClass){
+    public function getEntityPoints(string $id, $entityClass){
         $modelNamespace = 'Azuriom\Plugin\EfClassements\Models\\';
         $entity = ($modelNamespace.$entityClass)::find($id);
 

@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\DB;
 class Faction extends Model
 {
     public $params = ['totem', 'koth', 'points'];
+
+    public $keyType = 'string';
     /**
      * The primary key associated with the table.
      *

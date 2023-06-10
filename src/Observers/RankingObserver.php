@@ -26,9 +26,10 @@ class RankingObserver
         $ranking->refresh();
     }
 
-    public function deleting(Ranking $ranking){
+    public function deleting(Ranking $ranking): void
+    {
         if($ranking->type == 'Player'){
-            $ranking->players()->detach();
+            $ranking->player()->detach();
         } elseif ($ranking->type == 'Faction'){
             $ranking->faction()->detach();
         }

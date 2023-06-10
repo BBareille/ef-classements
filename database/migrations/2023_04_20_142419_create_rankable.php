@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::dropIfExists('rankables');
         Schema::create('rankables', function (Blueprint $table) {
             $table->unsignedInteger('ranking_id');
-            $table->unsignedInteger('rankable_id');
+            $table->string('rankable_id');
             $table->string('rankable_type');
         });
     }
